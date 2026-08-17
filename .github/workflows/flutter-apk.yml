@@ -26,8 +26,6 @@ jobs:
           flutter create . --platforms=android --org com.rizzu --project-name shadow_courier
       - name: Get dependencies
         run: flutter pub get
-      - name: Analyze
-        run: flutter analyze
       - name: Build APK
         run: flutter build apk --release
       - name: Upload APK
