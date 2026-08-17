@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#07080c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Shadow Courier</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game" aria-label="Shadow Courier game"></canvas>
+
+    <section id="menu" class="overlay visible">
+      <div class="menu-card">
+        <div class="eyebrow">NEON SLUMS // VERTICAL SLICE</div>
+        <h1>SHADOW<br><span>COURIER</span></h1>
+        <p class="tagline">Two bodies. One route. Three seconds of rewind.</p>
+        <button id="start-btn" class="primary">START RUN</button>
+        <p class="hint">Desktop: A/D · Space · Shift · Q · R · E</p>
+        <p class="hint">Mobile: touch controls appear in-game.</p>
+      </div>
+    </section>
+
+    <section id="pause" class="overlay">
+      <div class="menu-card compact">
+        <div class="eyebrow">SYSTEM PAUSED</div>
+        <h2>Hold the line.</h2>
+        <button id="resume-btn" class="primary">RESUME</button>
+        <button id="restart-btn" class="ghost">RESTART LEVEL</button>
+      </div>
+    </section>
+
+    <section id="victory" class="overlay">
+      <div class="menu-card">
+        <div class="eyebrow">DELIVERY COMPLETE</div>
+        <h2>THE MIRROR<br><span>IS SILENT.</span></h2>
+        <p id="victory-stats">Route secured.</p>
+        <button id="again-btn" class="primary">RUN IT AGAIN</button>
+      </div>
+    </section>
+
+    <section id="hud" aria-live="polite">
+      <div class="hud-top">
+        <div class="pill"><span class="label">MODE</span><strong id="mode-label">COURIER</strong></div>
+        <div class="pill objective"><span class="label">OBJECTIVE</span><strong id="objective-label">Reach the security checkpoint</strong></div>
+        <button id="pause-btn" class="pause-button" aria-label="Pause">Ⅱ</button>
+      </div>
+      <div class="hud-bottom">
+        <div class="meter"><span>HP</span><div class="bar"><i id="hp-bar"></i></div></div>
+        <div class="meter"><span>SHADOW</span><div class="bar shadow"><i id="shadow-bar"></i></div></div>
+        <div class="meter"><span>REWIND</span><div class="bar rewind"><i id="rewind-bar"></i></div></div>
+      </div>
+    </section>
+
+    <section id="mobile-controls" aria-label="Mobile controls">
+      <div id="joy" class="joystick"><div class="stick"></div></div>
+      <div class="mobile-actions">
+        <button data-action="jump">JUMP</button>
+        <button data-action="dash">DASH</button>
+        <button data-action="switch">SWITCH</button>
+        <button data-action="rewind">REWIND</button>
+        <button data-action="interact">USE</button>
+      </div>
+    </section>
+    <div id="toast" role="status"></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
