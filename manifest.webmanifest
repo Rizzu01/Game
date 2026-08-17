@@ -1,0 +1,13 @@
+{
+  "name": "Shadow Courier",
+  "short_name": "Shadow Courier",
+  "description": "A neon cyberpunk 2D action-puzzle vertical slice.",
+  "start_url": ".",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#07080c",
+  "theme_color": "#07080c",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
