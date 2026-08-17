@@ -14,21 +14,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version: '3.35.0'
-          cache: false
+
+      - name: Install Flutter SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --retry 5 --retry-delay 3 -o /tmp/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.35.0-stable.tar.xz
+          tar -xf /tmp/flutter.tar.xz -C "$HOME"
+          echo "$HOME/flutter/bin" >> "$GITHUB_PATH"
+          echo "$HOME/flutter/bin/cache/dart-sdk/bin" >> "$GITHUB_PATH"
+          "$HOME/flutter/bin/flutter" --version
+
       - name: Create Android project
         run: |
           rm -rf android
           flutter create . --platforms=android --org com.rizzu --project-name shadow_courier
+
       - name: Get dependencies
         run: flutter pub get
-      - name: Build APK
+
+      - name: Build release APK
         run: flutter build apk --release
-      - name: Upload APK
+
+      - name: Verify APK
+        run: |
+          test -s build/app/outputs/flutter-apk/app-release.apk
+          ls -lh build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload Flutter APK
         uses: actions/upload-artifact@v4
         with:
           name: shadow-courier-flutter-apk
