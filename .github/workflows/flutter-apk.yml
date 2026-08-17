@@ -19,7 +19,7 @@ jobs:
         with:
           channel: stable
           flutter-version: '3.35.0'
-          cache: true
+          cache: false
       - name: Create Android project
         run: |
           rm -rf android
